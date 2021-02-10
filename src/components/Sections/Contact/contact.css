@@ -1,0 +1,78 @@
+/*  ======== Content table ========
+    1. Form
+    2. Button
+    3. Alert
+    ======================= */
+
+.contact__wrapper {
+    width: 100%;
+}
+
+.contact__wrapper > * {
+    margin: auto;
+}
+
+/*  =======================
+    1. Form
+    ======================= */
+
+.form__contact,
+.contact__wrapper p {
+    max-width: 40em;
+}
+
+.form__group {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.form__group__input {
+    width: 100%;
+    padding: 1em;
+    border-radius: .5em;
+}
+
+/*  =======================
+    2. Button
+    ======================= */
+
+.btn__submit {
+    font-size: var(--fs-text);
+    transition: var(--transition-short);
+}
+
+.btn__submit:hover {
+    transform: scale(1.1);
+}
+
+/*  =======================
+    3. Alert
+    ======================= */
+
+.contact__alert {
+    display: none;
+    position: absolute;
+    bottom: -2em;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: var(--transition-short);
+    padding: 3em;
+    border: .125em solid var(--clr-accent);
+}
+
+.emailjs-success .contact__alert::after {
+    content: "Thank you! Will contact you soon!";
+}
+
+.emailjs-error .contact__alert::after {
+    content: "Oops. Please, try again later!";
+}
+
+.emailjs-error .contact__alert, 
+.emailjs-success .contact__alert {
+    display: block;
+    opacity: 1;
+    bottom: 0em;
+}

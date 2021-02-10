@@ -1,0 +1,761 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;1,400;1,700&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Dynalight&display=swap');
+
+/*  ======== Content table ========
+    1. Root
+        1.1. Variables
+        1.2. Media queries
+    2. Global styles
+    3. Typography
+    4. HTML tags
+    5. Components
+    6. Icons
+        6.1. SVG
+            6.1.1. Paths
+            6.1.2. Text
+            6.1.3. Media queries
+        6.2 Skills Images
+    7. Containers
+        7.1. Flex
+        7.2. Grid
+    8. Landing Page
+        8.1 Title Tags
+        8.2 React CSSTransitions
+        8.3 Copyright
+    9. Keyframes
+    ======================= */
+
+/*  =======================
+    1. Root
+        1.1. Variables
+    ======================= */
+:root {
+    --animation-xlong: 3.5s;
+    --animation-long: 2s;
+    --animation-regular: 1.5s;
+    --animation-short: 1s;
+
+    --animation-delay-regular: 1s;
+    --animation-delay-short: .5s;
+
+    --card-padding: 13em 3em;
+
+    --flex-direction: column;
+    --flex-basis: auto;
+    --flex-as: auto;
+
+    --fs-h1: 3rem;
+    --fs-h2: 1.5rem;
+    --fs-h3: 1.25rem;
+    --fs-h4: 1.125rem;
+    --fs-text: 1rem;
+    --fs-tag: 1rem;
+
+    --fw-bold: 700;
+    --fw-regular: 400;
+
+    --index-top: 300;
+    --index-middle: 200;
+    --index-bottom: 100;
+
+    --top-level: translateZ(5.5em);
+    --middle-level: translateZ(3em);
+
+    --nav-item-top: 2em;
+    --nav-arrow-top: 0em;
+    --hamburger-top: 2em;
+    --nav-social-top: calc(100% - 6em);
+
+    --icon-social: 3em;
+
+    --scale: 1;
+
+    --section-min-height: 65%;
+
+    --transition-xlong: all 1s ease-in-out;
+    --transition-long: all 550ms ease-in-out;
+    --transition-short: all 250ms ease-in-out;
+}
+
+/*  =======================
+    1.2. Media queries
+    ======================= */
+
+@media only screen and (min-width: 48em) {
+    :root {
+
+        --fs-h1: 3.5rem;
+        --fs-h2: 2.25rem;
+        --fs-h3: 1.25rem;
+ 
+        --flex-direction: row;
+        --flex-basis: 100%;
+        --flex-as: center;
+        
+        --nav-item-top: 1.5em;
+
+        --section-min-height: 70%;
+
+        --card-width: 45%;
+    }
+}
+
+@media only screen and (min-width: 120em) {
+    :root {
+        --fs-h1: 4.5rem;
+        --fs-h2: 3.25rem;
+        --fs-h3: 1.5rem;
+        --fs-h4: 1.125rem;
+
+        --nav-arrow-top: 1em;
+        --nav-item-top: 1em;
+
+        --scale: 1.5;
+
+        --section-min-height: 80%;
+    }
+}
+
+@media only screen and (min-width: 160.25em) {
+    :root {
+        --card-padding: 11em 3em;
+
+        --fs-h1: 9.5rem;
+        --fs-h2: 6.75rem;
+        --fs-h3: 4.5rem;
+        --fs-h4: 4.125rem;
+        --fs-tag: 2.5rem;
+        --fs-text: 3rem;
+        
+        --nav-item-top: .75em;
+        --hamburger-top: 7em;
+
+        --scale: 2.5;
+    }
+    ::placeholder {
+        font-size: 2.5rem;
+    }
+}
+
+/*  =======================
+    2. Global styles
+    ======================= */
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    border-color: var(--clr-secondary);
+    font-family: 'Roboto Condensed', sans-serif;
+    outline: none;
+    outline-color: var(--clr-accent);
+}
+
+::placeholder {
+    color: var(--clr-secondary);
+}
+
+body {
+    position: relative;
+    background-color: var(--clr-main);
+    color: var(--clr-secondary);
+    font-size: var(--fs-text);
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    transition: var(--transition-short);
+}
+
+html,
+body { overflow: hidden; }
+
+html { scroll-behavior: smooth; }
+
+img {
+    display: inline-block;
+    max-width: 100%;
+}
+
+input,
+textarea,
+button {
+    background-color: var(--clr-main);
+    color: var(--clr-secondary);
+}
+
+input,
+textarea {
+    border: none;
+    border-bottom: 2px solid var(--clr-secondary);
+    font-size: var(--fs-text);
+}
+
+input:focus,
+textarea:focus {
+    border-bottom: 4px solid var(--clr-accent);
+    color: var(--clr-accent);
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+    color: var(--clr-accent);
+}
+
+textarea { 
+    resize: none;
+    overflow: hidden; 
+}
+
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--clr-accent);
+    border-bottom: 4px solid var(--clr-accent);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover {    
+    -webkit-box-shadow: 0 0 0 30px var(--clr-main) inset;
+    box-shadow: 0 0 0 30px var(--clr-main) inset;
+    border: none;
+    border-bottom: 2px solid var(--clr-accent);
+    -webkit-text-fill-color: var(--clr-secondary);
+}
+
+p {
+    line-height: 1.5;
+}
+
+path {
+    fill: transparent;
+    stroke: var(--clr-accent);
+}
+
+/*  =======================
+    3. Typography
+    ======================= */
+
+h1,
+h2,
+h3,
+h4 {
+    margin: 0;
+}
+
+h1 { font-size: var(--fs-h1) }
+h2 { font-size: var(--fs-h2) }
+h3 { font-size: var(--fs-h3) }
+h4 { font-size: var(--fs-h4) }
+
+.text-center {
+    text-align: center;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text-accent {
+    color: var(--clr-accent);
+}
+
+/*  =======================
+    4. HTML tags
+    ======================= */
+
+h1::before,
+h1::after,
+h2::before,
+h2::after,
+h3::before, 
+h3::after, 
+h4::before, 
+h4::after, 
+p::before,
+p::after,
+form::before,
+form::after,
+body::before,
+body::after {
+    font-family: 'Dynalight', sans-serif;
+    font-size: var(--fs-tag);
+    color:var(--clr-secondary);
+    opacity: .4;
+}
+
+body::before {
+    margin: .5em;
+    content: '<body>';
+}
+
+body::after {
+    content: '</body>';
+    margin: .5em;
+    bottom: 0;
+    position: absolute;
+}
+
+h1::before {
+    content: '<h1>';
+    vertical-align: top;
+}
+
+h1::after {
+    content: '</h1>';
+    vertical-align: bottom;
+}
+
+h2::before {
+    content: '<h2>';
+    vertical-align: top;
+}
+
+h2::after {
+    content: '</h2>';
+    vertical-align: bottom;
+}
+
+h3::before {
+    content: '<h3>';
+    vertical-align: top;
+}
+
+h3::after {
+    content: '</h3>';
+}
+
+h4::before {
+    content: '<h4>';
+}
+
+h4::after {
+    content: '</h4>';
+    vertical-align: bottom;
+}
+
+p::before {
+    content: '<p>\A';
+    white-space: pre;
+}
+
+p::after {
+    content: '\A</p>';
+    white-space: pre;
+}
+
+form::before {
+    content: '<form>';
+}
+
+form::after {
+    content: '</form>';
+}
+
+/*  =======================
+    5. Components
+    ======================= */
+
+.btn {
+    padding: .5em 2em;
+    border-radius: .5em;
+    outline: none;
+    cursor: pointer;
+}
+
+/*  =======================
+    6. Icons
+        6.1. SVG
+    ======================= */
+.svg__about {
+    width: 100%;
+    height: 100%;
+}
+
+.svg__arrow {
+    display: none;
+    width: 2rem;
+    position: absolute;
+    left: 50%;
+    top: var(--nav-arrow-top);
+    transform: rotate(-.25turn) translate(0, -10%) scale(var(--scale));
+    transition: var(--transition-short);
+}
+
+.svg__brackets {
+    width: 3em;
+}
+
+.svg__gears,
+.svg__contact {    
+    display: none;  
+    width: 100%;
+    height: 100%;
+}
+
+.svg__contact {
+    width: 100%;
+    height: 100%; 
+}
+
+.svg__theme {
+    position: absolute;
+    cursor: pointer;
+    width: 3.5em;
+    height: 3.5em;
+    z-index: var(--index-top);
+    transition: var(--transition-short);
+}
+
+.svg__theme:hover {
+    transform: scale(1.2);
+}
+
+.svg__theme-dark {
+    top: 1em;
+    right: 1.25em;
+}
+
+.svg__theme-light {
+    top: .75em;
+    right: 1em;
+}
+
+.svg__portfolio {
+    width: 25%;
+    margin: 0 auto;
+}
+
+.svg__separator {
+    stroke: var(--clr-main);
+    width: 75%;
+    height: .25em;
+    stroke-dasharray: 250;
+    stroke-dashoffset: 250;
+}
+
+/*  =======================
+    6.1.1. Paths
+    ======================= */
+
+.svg__about path {
+    stroke-dasharray: 1883;
+    stroke-dashoffset: 1883;
+}
+
+.svg__arrow path {
+    stroke-width: .1em;
+    stroke-dasharray: 1513;
+    stroke-dashoffset: 1513;
+}    
+
+.svg__brackets path,
+.svg__separator path {
+    stroke: var(--clr-main);
+}
+
+.svg__brackets path {    
+    stroke-dasharray: 68;
+    stroke-dashoffset: 68;
+}
+
+.svg__contact path {
+    stroke-dasharray: 4471;
+    stroke-dashoffset: 4471;
+}
+
+.svg__gears path {
+    stroke-miterlimit: 10;
+    stroke-dasharray: 6028;
+    stroke-dashoffset: 6028;
+}
+
+.svg__portfolio path {
+    stroke-width: .125em;
+    stroke-dasharray: 6768;
+    stroke-dashoffset: 6768;
+}
+
+.svg__about path,
+.svg__arrow path,
+.svg__gears path,
+.svg__contact path,
+.svg__theme path,
+.svg__portfolio path {
+    animation-name: drawSvgPath;
+    animation-fill-mode: forwards;
+}
+
+.svg__about path,
+.svg__gears path,
+.svg__contact path,
+.svg__portfolio path {  
+    animation-duration: var(--animation-xlong);
+    animation-delay: var(--animation-delay-short);
+}
+
+.svg__theme path,
+.svg__arrow path {
+    animation-duration: var(--animation-long);
+}
+
+.svg__theme path {
+    stroke-width: .15em;
+    stroke: var(--clr-secondary);
+}
+
+.svg__theme-dark path{   
+    stroke-dasharray: 3456;
+    stroke-dashoffset: 3456;
+}
+
+.svg__theme-light path{   
+    stroke-dasharray: 5202;
+    stroke-dashoffset: 5202;
+}
+
+/*  =======================
+    6.1.2. Text
+    ======================= */
+
+.arrow__text {
+    display: none;
+    font: 1.5em 'Dynalight', sans-serif;
+    position: absolute;
+    opacity: 0;
+    animation: fadeIn var(--animation-long) 
+            var(--animation-delay-short) forwards;
+}
+
+.arrow__text:first-of-type {
+    top: 5em;
+    left: 50%;
+    transform: translateX(-250%);
+}
+
+.arrow__text:last-of-type {
+    top: 5em;
+    right: 0;
+    transform: translateX(-200%);
+}
+
+/*  =======================
+    6.1.3. Media queries
+    ======================= */
+
+@media only screen and (min-width: 48em) {
+    .svg__contact,
+    .svg__gears,
+    .arrow__text 
+    {display: block;}
+}
+
+/*  =======================
+    6.2 Skills Images
+    ======================= */
+
+.icon__skills {
+    display: inline-block;
+    margin: 0;
+    padding: .5em 0;
+}
+
+.icon__skills img {
+    width: 2.5em;
+    height: 2.5em;
+    margin: 0 1em;
+}
+    
+/*  =======================
+    7. Containers
+    ======================= */
+
+.container {
+    width: min(90%, 90em);
+    height: min(var(--section-min-height), 95%);
+}
+
+.container--extended {
+    width: min(90%, 120em);
+}
+
+/*  =======================
+    7.1. Flex
+    ======================= */
+
+.container--flex {
+    display: flex;
+    flex-direction: var(--flex-direction);
+}
+
+.container--flex > * + * {
+    margin-top: 1em;
+}
+
+@media only screen and (min-width: 48em) {
+    .container--flex > * + * {
+        margin-top: 0;
+    }
+}
+
+.split {
+    flex-basis: var(--flex-basis);
+    align-self: var(--flex-as);
+    height: 100%;
+}
+
+/*  =======================
+    7.2. Grid
+    ======================= */
+
+.container--grid {
+    display: grid;
+    grid-template-columns: auto;
+    place-items: center;
+    gap: 1em;
+}
+
+@media only screen and (min-width: 48em) {
+    .container--grid {
+        grid-template-columns: repeat(auto-fit, minmax(18.75em, 1fr));
+    }
+}
+
+/*  =======================
+    8. Landing Page
+    ======================= */
+
+.title,
+.title span {
+    font-family: 'Bodoni Moda', sans-serif;
+}
+
+.landing__title-top,
+.landing__title-bottom,
+.subtitle {
+    font-weight: var(--fw-regular);
+    font-style: italic;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transition: var(--transition-long);
+}
+
+.landing__title-top { 
+    font-size: var(--fs-h1);
+    transform: translate(-60%, -115%); 
+}
+
+.landing__title-bottom { transform: translate(-50%, -67%); }
+
+/*  ======================= 
+    8.1 Title Tags
+    ======================= */
+
+.landing__title-top::after,
+.landing__title-bottom::before  {
+    content: '';
+}    
+    
+/*  =======================    
+    8.2 React CSSTransitions
+    ======================= */
+
+.landing__title-top-enter {
+    opacity: 0;
+    left: 0;
+}
+
+.landing__title-bottom-enter {
+    opacity: 0;
+    left: 100%;
+}
+
+.landing__title-top-enter-active,
+.landing__title-bottom-enter-active {
+    opacity: 1;
+    left: 50%;
+}
+
+.landing__title-top-exit,
+.landing__title-bottom-exit {
+    opacity: 1;
+    left: 50%;
+}
+
+.landing__title-top-exit-active {
+    opacity: 0;
+    left: 0;
+}
+
+.landing__title-bottom-exit-active {
+    opacity: 0;
+    left: 100%;
+}
+
+.subtitle-enter {
+    opacity: 0;
+    top: -10%;
+}
+
+.subtitle-enter-active {
+    opacity: 1;
+    top: 50%;
+}
+
+.subtitle-exit-active {
+    opacity: 0;
+    top: -10%;
+}
+
+/*  =======================
+    8.3 Copyright
+    ======================= */
+
+.copyright {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    color: var(--clr-accent);
+    padding: .25em;
+}
+
+/*  =======================
+    9. Keyframes
+    ======================= */
+
+@keyframes drawSvgPath {
+    100% { stroke-dashoffset: 0; }
+}
+
+@keyframes fadeIn {
+    100% { opacity: 1; }
+}
+
+@keyframes fillSvg {
+    95% {
+        fill: none;
+    }
+    100% {         
+        fill: var(--clr-main); 
+    }
+}
+
+@keyframes slideArrowMenu {
+    50%{
+        transform: translate(-3.15em, -.15em) rotateZ(.14turn) rotateY(.5turn);
+    }
+    100%{        
+        transform: translateX(-3.5em) rotateZ(.14turn) rotateY(.5turn);
+    }
+}
+
+@keyframes slideArrowTheme {
+    50%{
+        transform: translate(-5.15em, -.15em) rotateZ(.14turn) rotateY(.5turn);
+    }
+    100%{        
+        transform: translateX(-5.5em) rotateZ(.14turn) rotateY(.5turn);
+    }
+}

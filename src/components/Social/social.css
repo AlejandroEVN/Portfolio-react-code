@@ -1,0 +1,43 @@
+.nav__social {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    z-index: var(--index-top);
+    transition: var(--transition-long);
+}
+
+.nav__social__icon:hover svg {
+    transform: scale(1.1) ;
+}
+
+.nav__social__icon:hover .nav__social__icon-wrapper {
+    background-color: var(--clr-main);
+}
+
+.nav__social__icon:hover svg path {
+    stroke: var(--clr-accent);
+    fill: var(--clr-accent);
+}
+
+.nav__social__icon-wrapper {
+    display: inline-block;
+    background-color: var(--clr-secondary);
+    border-radius: 50%;
+    height: var(--icon-social);
+    margin: 0.125em;
+}
+
+.nav__social__icon-svg  {
+    width: var(--icon-social);
+    transition: var(--transition-short);
+    transform: scale(0.75);
+}
+
+.nav__social__icon-svg path {
+    stroke: var(--clr-accent);
+    stroke-dasharray: 150;
+    stroke-dashoffset: 150;
+    stroke-width: .0625rem;
+    animation: drawSvgPath var(--animation-regular) forwards;
+}

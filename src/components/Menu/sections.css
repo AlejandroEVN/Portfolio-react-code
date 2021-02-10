@@ -1,0 +1,15 @@
+.section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-y: auto;
+    overflow-x: hidden;
+    opacity: 0;
+    transition: var(--transition-long);
+    scrollbar-width: none;
+}
+
+.section::-webkit-scrollbar {
+    display: none;
+}

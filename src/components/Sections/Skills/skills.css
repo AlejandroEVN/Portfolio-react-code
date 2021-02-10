@@ -1,0 +1,51 @@
+.skills__group {
+    padding: .5em 0;
+    margin: .125em 0;
+}
+
+.skills__group > :nth-child(2) {  
+    border-left: .125em solid var(--clr-accent);
+    padding-left: .25em;
+}
+
+.skills__group > h3 {
+    width: 70%;
+    display: inline-block;
+    align-self: center;
+}
+
+.bar {
+    position: relative;
+    width: 90%;
+    margin: 0;
+}
+
+.bar-background,
+.bar-clip {
+    position: absolute;
+    height: 100%;
+    z-index: -1;
+}
+
+.bar-background {
+    background-color: var(--clr-accent);
+    animation: fillBar var(--animation-long) forwards;
+}
+
+.bar-clip {
+    width: 20%;
+    right: -1.25em;
+    background-color: var(--clr-main);
+    clip-path: polygon(36% 50%, 36% 41%, 52% 40%, 55% 30%, 42% 20%, 59% 6%, 70% 17%, 83% 13%, 84% 0, 100% 0, 100% 100%, 84% 100%, 83% 87%, 70% 83%, 59% 94%, 42% 80%, 55% 70%, 52% 60%, 36% 59%);
+}
+
+@keyframes fillBar {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+    100%{
+        width: 100%;
+        opacity: .6;
+    }
+}

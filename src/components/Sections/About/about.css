@@ -1,0 +1,15 @@
+.link__wrapper {
+    position: relative;
+}
+
+.resume__link::after {
+    content: '⤦ Check my resume';
+    font: var(--fs-h3) 'Dynalight', 'sans-serif';
+    color: var(--clr-secondary);
+    position: absolute;
+    top: -30%;
+    left: 25%;
+    opacity: 0;
+    animation: fadeIn var(--animation-short) 
+            var(--animation-delay-regular) forwards;
+}

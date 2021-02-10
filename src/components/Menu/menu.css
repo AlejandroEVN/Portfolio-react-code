@@ -1,0 +1,193 @@
+/*  ======== Content table ========
+    1. Hamburger
+    2. Sections
+        2.1. Items
+        2.2. Corners
+    3. Opened Menu
+    4. Expanded Section
+    ======================= */
+
+/*  =======================
+    1. Hamburger
+    ======================= */
+
+.hamburger {
+    display: block;
+    transform: scale(var(--scale));
+} 
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+    width: 2em;
+    height: .25em;
+    border-radius: 1em;
+    background-color: var(--clr-accent);
+    transition: var(--transition-short);
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+}
+
+.hamburger::before { top: .5em; }
+.hamburger::after { bottom: .5em; }
+
+.btn__hamburger {
+    padding: .5em;
+    top: var(--hamburger-top);
+}
+
+/*  =======================
+    2. Sections
+        2.1. Items
+    ======================= */
+
+
+.btn__hamburger,
+.nav__item__link {
+    position: absolute;
+    left: 50%;
+    z-index: var(--index-top);   
+    border: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition: var(--transition-long);
+}
+    
+.nav__item {
+    position: absolute;
+    width: 0;
+    height: 0;
+    transition: var(--transition-long);
+    z-index: var(--index-middle);
+}
+
+.nav__item__link {
+    top: 50%;
+    font-weight: var(--fw-bold);
+}
+
+/*  =======================
+    2.2. Corners
+     // tl: Top-left (Projects)
+     // tr: Top-right (Skills)
+     // bl: Bottom-left (About me)
+     // br: Bottom-right (Contact)
+    ======================= */
+
+.nav__item__tl {
+    top: -50%;
+    left: -50%;
+}
+
+.nav__item__tr {
+    top: -50%;
+    right: -50%;
+}
+
+.nav__item__bl {
+    bottom: -50%;
+    left: -50%;
+}
+
+.nav__item__br {
+    bottom: -50%;
+    right: -50%;
+}
+
+/*  =======================
+    3. Opened Menu
+    ======================= */
+
+.nav-open .btn__hamburger {
+    top: 50%;
+}
+
+.nav-open .hamburger {
+    transform: rotate(45deg) scale(var(--scale));
+}
+
+.nav-open .hamburger::after {
+    transform: rotate(-90deg);
+    top: 0;
+}
+
+.nav-open .hamburger::before {
+    opacity: 0;
+}
+
+.nav-open .nav__item {    
+    width: 50%;
+    height: 50%;
+}
+
+.nav-open .nav__item__tl,
+.nav-open .nav__item__tr { top: 0; }
+
+
+.nav-open .nav__item__tl { left: 0; }
+
+.nav-open .nav__item__tr { right: 0; }
+
+.nav-open .nav__item__bl,
+.nav-open .nav__item__br { bottom: 0;}
+
+.nav-open .nav__item__bl { left: 0; }
+
+.nav-open .nav__item__br { right: 0; }
+
+.nav-open .nav__social {
+    top: var(--nav-social-top);
+}
+
+/*  =======================
+    4. Expanded Section
+    ======================= */
+
+.section > * {
+    display: none;
+}
+
+.expand {
+    width: 100%!important;
+    height: 100%!important;
+}
+
+.expand .nav__item__link {    
+    top: var(--nav-item-top);
+    transform: translate(-50%, 0);
+    opacity: 0;
+}
+
+.expand .svg__arrow {
+    display: block;
+}
+
+.expand > .section {
+    opacity: 1;
+}
+
+.expand > .section > *{
+    display: block;
+}
+
+.expanded__section .btn__hamburger {   
+    top: 2.5em;
+}
+
+.expanded__section .btn__hamburger > .hamburger {
+    transform: rotate(135deg) scale(var(--scale));
+}
+
+.expanded__section .nav__item:not(.expand) {
+    opacity: 0;
+    transform: translateY(-2em);
+    z-index: var(--index-bottom);
+    pointer-events: none;
+}
